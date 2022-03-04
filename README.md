@@ -109,14 +109,13 @@ const withTM = require('next-transpile-modules')(['styleguide/node_modules/lodas
 // ...
 ```
 
-Also, You add all scoped packages if you need
+If you need to install all packages of a certain scope (**it is highly discouraged**), you can do the following:
 
 ```js
 const packageJSON = require('./package.json');
-
 const transpiledPackages = Object.keys(packageJSON.dependencies).filter(it => it.includes('@shared/'));
 
-const withTM = require('next-transpile-modules')([...transpiledPackages]);
+const withTM = require('next-transpile-modules')(transpiledPackages);
 ```
 
 ### With `next-compose-plugins`:
