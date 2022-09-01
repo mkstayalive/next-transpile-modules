@@ -34,5 +34,9 @@ A clear and concise description of what you expected to happen.
 
 <!-- if applicable, please add your next.config.js, information about the package you are trying to transpile, debug logs (CF. README), workspaces/lerna, anything that can help -->
 
+**Debug logs (optiona)**
+If the bug is related to compilation issues, please include a debug log (cf. README).
+
 **Additional context**
 Add any other context about the problem here.
+
