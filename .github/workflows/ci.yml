@@ -38,6 +38,17 @@ jobs:
       - name: Tests setup
         run: node src/__tests__/setup.js
 
+      - name: 'Test: linting'
+        run: npm run test:lint
+
+      - name: 'Test: formatting'
+        run: npm run test:formatting
+        env:
+          CI: true
+
+      - name: 'Test: typings'
+        run: yarn run typings
+
       - name: Install tests apps dependencies (npm-basic)
         run: npm ci --prefix=src/__tests__/__apps__/npm-basic
 
@@ -58,11 +69,3 @@ jobs:
 
       - name: 'Test: unit & integration tests'
         run: npm test
-
-      - name: 'Test: linting'
-        run: npm run test:lint
-
-      - name: 'Test: formatting'
-        run: npm run test:formatting
-        env:
-          CI: true
