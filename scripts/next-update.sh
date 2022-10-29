@@ -1,7 +1,7 @@
 #!/bin/bash
 # Look at how messy this script is :p
 
-NEXT_VERSION="12.1.6"
+NEXT_VERSION="13.0.0"
 ROOT=$(pwd)
 
 echo "==================== NPM ===================="
