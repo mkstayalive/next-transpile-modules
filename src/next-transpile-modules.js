@@ -12,10 +12,10 @@ const process = require('process');
 const enhancedResolve = require('enhanced-resolve');
 
 // Use me when needed
-// const util = require('util');
-// const inspect = (object) => {
-//   console.log(util.inspect(object, { showHidden: false, depth: null }));
-// };
+const util = require('util');
+const inspect = (object) => {
+  console.log(util.inspect(object, { showHidden: false, depth: null }));
+};
 
 const CWD = process.cwd();
 
@@ -89,6 +89,7 @@ const withTmInitializer = (modules = [], options = {}) => {
    * @returns { T | undefined }
    */
   const withTM = (nextConfig = {}) => {
+    inspect(nextConfig);
     if (modules.length === 0) return nextConfig;
 
     const resolveSymlinks = 'resolveSymlinks' in options ? options.resolveSymlinks : true;

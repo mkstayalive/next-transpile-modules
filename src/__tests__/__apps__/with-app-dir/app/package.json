@@ -1,5 +1,5 @@
 {
-  "name": "test-pnpm",
+  "name": "test-yarn-workspaces",
   "version": "1.0.0",
   "description": "",
   "private": "true",
@@ -15,13 +15,15 @@
     "next": "13.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.27.0",
-    "shared": "file:../shared",
-    "shared-ts": "file:../shared-ts",
-    "shared-ui": "file:../shared-ui"
+    "sass": "^1.43.4",
+    "shared": "^1.0.0",
+    "shared-ts": "^1.0.0",
+    "shared-ui": "^1.0.0"
   },
   "devDependencies": {
+    "@types/node": "^18.11.7",
     "@types/react": "^18.0.24",
-    "@types/react-dom": "^18.0.8"
+    "@types/react-dom": "^18.0.8",
+    "typescript": "^4.8.4"
   }
 }
