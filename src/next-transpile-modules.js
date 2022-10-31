@@ -10,7 +10,6 @@ const path = require('path');
 const process = require('process');
 
 const enhancedResolve = require('enhanced-resolve');
-const escalade = require('escalade/sync');
 
 // Use me when needed
 // const util = require('util');
