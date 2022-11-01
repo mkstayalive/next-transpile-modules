@@ -137,3 +137,21 @@ describe.each([
     });
   });
 });
+
+describe.each([['with-app-dir', 3507]])('%s integration', (name, port) => {
+  const BASE_URL = `http://localhost:${port}`;
+
+  describe('homepage access', () => {
+    test('homepage should be correctly displayed', async () => {
+      const page = await browser.newPage();
+      const response = await page.goto(`${BASE_URL}/`);
+
+      if (!response) throw new Error('Could not access the page');
+
+      expect(response.status()).toBe(200);
+
+      const content = await page.$eval('h1', (e) => e.textContent);
+      expect(content).toBe('The answer is 43');
+    });
+  });
+});

@@ -3,6 +3,7 @@ const yarnWorkspacesAppPath = 'src/__tests__/__apps__/yarn-workspaces/app';
 const yarnWorkspacesSymlinksAppPath = 'src/__tests__/__apps__/yarn-workspaces-symlinks/app';
 const pnpmAppPath = 'src/__tests__/__apps__/pnpm';
 const swcAppPath = 'src/__tests__/__apps__/swc/app';
+const withAppDirAppPath = 'src/__tests__/__apps__/with-app-dir/app';
 
 module.exports = {
   launch: {
@@ -35,6 +36,11 @@ module.exports = {
       command: `yarn --cwd ${swcAppPath} run start --port 3506`,
       launchTimeout: 20000,
       port: 3506,
+    },
+    {
+      command: `yarn --cwd ${withAppDirAppPath} run start --port 3507`,
+      launchTimeout: 20000,
+      port: 3507,
     },
   ],
 };

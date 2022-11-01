@@ -26,7 +26,8 @@
     "test:prepare:yarn-workspaces-symlinks": "yarn --cwd src/__tests__/__apps__/yarn-workspaces-symlinks/app run build",
     "test:prepare:pnpm": "npm run build --prefix=src/__tests__/__apps__/pnpm",
     "test:prepare:swc": "yarn --cwd src/__tests__/__apps__/swc/app run build",
-    "test:prepare": "npm run test:prepare:npm-basic && npm run test:prepare:yarn-workspaces && npm run test:prepare:yarn-workspaces-symlinks && npm run test:prepare:pnpm && npm run test:prepare:swc"
+    "test:prepare:with-app-dir": "yarn --cwd src/__tests__/__apps__/with-app-dir/app run build",
+    "test:prepare": "npm run test:prepare:npm-basic && npm run test:prepare:yarn-workspaces && npm run test:prepare:yarn-workspaces-symlinks && npm run test:prepare:pnpm && npm run test:prepare:swc && npm run test:prepare:with-app-dir"
   },
   "repository": {
     "type": "git",
@@ -46,8 +47,7 @@
     "webpack"
   ],
   "dependencies": {
-    "enhanced-resolve": "^5.10.0",
-    "escalade": "^3.1.1"
+    "enhanced-resolve": "^5.10.0"
   },
   "devDependencies": {
     "@types/jest-environment-puppeteer": "5.0.2",
