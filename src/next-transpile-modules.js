@@ -204,8 +204,12 @@ const withTmInitializer = (modules = [], options = {}) => {
           );
 
           if (nextGlobalCssLoader) {
-            nextGlobalCssLoader.issuer = { or: [matcher, nextGlobalCssLoader.issuer] };
-            nextGlobalCssLoader.include = { or: [...modulesPaths, nextGlobalCssLoader.include] };
+            nextGlobalCssLoader.issuer = {
+              or: nextGlobalCssLoader.issuer ? [matcher, nextGlobalCssLoader.issuer] : [matcher],
+            };
+            nextGlobalCssLoader.include = {
+              or: nextGlobalCssLoader.include ? [...modulesPaths, nextGlobalCssLoader.include] : modulesPaths,
+            };
           } else if (!options.isServer) {
             // Note that Next.js ignores global CSS imports on the server
             console.warn('next-transpile-modules - could not find default CSS rule, global CSS imports may not work');
@@ -218,7 +222,9 @@ const withTmInitializer = (modules = [], options = {}) => {
           // FIXME: SASS works only when using a custom _app.js file.
           // See https://github.com/vercel/next.js/blob/24c3929ec46edfef8fb7462a17edc767a90b5d2b/packages/next/build/webpack/config/blocks/css/index.ts#L211
           if (nextGlobalSassLoader) {
-            nextGlobalSassLoader.issuer = { or: [matcher, nextGlobalSassLoader.issuer] };
+            nextGlobalSassLoader.issuer = {
+              or: nextGlobalSassLoader.issuer ? [matcher, nextGlobalSassLoader.issuer] : [matcher],
+            };
           } else if (!options.isServer) {
             // Note that Next.js ignores global SASS imports on the server
             console.info('next-transpile-modules - global SASS imports only work with a custom _app.js file');
