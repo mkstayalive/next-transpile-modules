@@ -197,6 +197,33 @@ const withTmInitializer = (modules = [], options = {}) => {
         // TODO ask Next.js maintainer to expose the css-loader via defaultLoaders
         const nextCssLoaders = config.module.rules.find((rule) => typeof rule.oneOf === 'object');
 
+        // .module.css
+        if (nextCssLoaders) {
+          const nextCssLoader = nextCssLoaders.oneOf.find(
+            (rule) => rule.sideEffects === false && regexEqual(rule.test, /\.module\.css$/)
+          );
+
+          const nextSassLoader = nextCssLoaders.oneOf.find(
+            (rule) => rule.sideEffects === false && regexEqual(rule.test, /\.module\.(scss|sass)$/)
+          );
+
+          // backwards compatibility with Next.js 13.0 (broke in 13.0.1)
+          // https://github.com/vercel/next.js/pull/42106/files
+          if (nextCssLoader && nextCssLoader.issuer != null) {
+            nextCssLoader.issuer.or = nextCssLoader.issuer.and ? nextCssLoader.issuer.and.concat(matcher) : matcher;
+            delete nextCssLoader.issuer.not;
+            delete nextCssLoader.issuer.and;
+          }
+
+          // backwards compatibility with Next.js 13.0 (broke in 13.0.1)
+          // https://github.com/vercel/next.js/pull/42106/files
+          if (nextSassLoader && nextSassLoader.issuer != null) {
+            nextSassLoader.issuer.or = nextSassLoader.issuer.and ? nextSassLoader.issuer.and.concat(matcher) : matcher;
+            delete nextSassLoader.issuer.not;
+            delete nextSassLoader.issuer.and;
+          }
+        }
+
         // Add support for Global CSS imports in transpiled modules
         if (nextCssLoaders) {
           const nextGlobalCssLoader = nextCssLoaders.oneOf.find(
