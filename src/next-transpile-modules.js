@@ -18,7 +18,7 @@ const process = require('process');
 const enhancedResolve = require('enhanced-resolve');
 
 // Use me when needed
-const util = require('util');
+// const util = require('util');
 //  const inspect = (object) => {
 //    console.log(util.inspect(object, { showHidden: false, depth: null }));
 //  };
