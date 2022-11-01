@@ -2,7 +2,7 @@ import './Textarea.css';
 
 function Textarea(props) {
   return (
-    <textarea type='text' className='textarea'>
+    <textarea type='text' className='textarea' defaultValue=''>
       {props.children}
     </textarea>
   );

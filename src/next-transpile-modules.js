@@ -3,7 +3,13 @@
  *
  * THIS PLUGIN IS A BIG HACK.
  *
- * don't even try to reason about the quality of the following lines of code.
+ * Don't even try to reason about the quality of the following lines of code.
+ *
+ * ---
+ *
+ * We intentionally do not use experimental.transpilePackages (yet) as its API
+ * may change and we want to avoid breaking changes while the Next.js figures
+ * this all out.
  */
 
 const path = require('path');
@@ -12,10 +18,10 @@ const process = require('process');
 const enhancedResolve = require('enhanced-resolve');
 
 // Use me when needed
-// const util = require('util');
-// const inspect = (object) => {
-//   console.log(util.inspect(object, { showHidden: false, depth: null }));
-// };
+const util = require('util');
+//  const inspect = (object) => {
+//    console.log(util.inspect(object, { showHidden: false, depth: null }));
+//  };
 
 const CWD = process.cwd();
 
@@ -190,33 +196,6 @@ const withTmInitializer = (modules = [], options = {}) => {
         // Support CSS modules + global in node_modules
         // TODO ask Next.js maintainer to expose the css-loader via defaultLoaders
         const nextCssLoaders = config.module.rules.find((rule) => typeof rule.oneOf === 'object');
-
-        // .module.css
-        if (nextCssLoaders) {
-          const nextCssLoader = nextCssLoaders.oneOf.find(
-            (rule) => rule.sideEffects === false && regexEqual(rule.test, /\.module\.css$/)
-          );
-
-          const nextSassLoader = nextCssLoaders.oneOf.find(
-            (rule) => rule.sideEffects === false && regexEqual(rule.test, /\.module\.(scss|sass)$/)
-          );
-
-          if (nextCssLoader) {
-            nextCssLoader.issuer.or = nextCssLoader.issuer.and ? nextCssLoader.issuer.and.concat(matcher) : matcher;
-            delete nextCssLoader.issuer.not;
-            delete nextCssLoader.issuer.and;
-          } else {
-            console.warn('next-transpile-modules - could not find default CSS rule, CSS imports may not work');
-          }
-
-          if (nextSassLoader) {
-            nextSassLoader.issuer.or = nextSassLoader.issuer.and ? nextSassLoader.issuer.and.concat(matcher) : matcher;
-            delete nextSassLoader.issuer.not;
-            delete nextSassLoader.issuer.and;
-          } else {
-            console.warn('next-transpile-modules - could not find default SASS rule, SASS imports may not work');
-          }
-        }
 
         // Add support for Global CSS imports in transpiled modules
         if (nextCssLoaders) {
