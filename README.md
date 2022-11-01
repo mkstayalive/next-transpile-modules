@@ -8,6 +8,7 @@ Makes it easy to have local libraries and keep a slick, manageable dev experienc
 
 - Supports transpilation of all extensions supported by Next.js: `.js`, `.jsx`, `.ts`, `.tsx`, `.mjs`, `.css`, `.scss` and `.sass`
 - Enable hot-reloading on local packages
+- Enable global and local CSS loading from local/npm packages
 - Most setups should work out of the box (npm, yarn, pnpm, ...)
 
 ## What problems does it solve?
@@ -25,6 +26,7 @@ What this plugin **does not aim** to solve:
 
 | Next.js version   | Plugin version     |
 | ----------------- | ------------------ |
+| Next.js 13        | 10.x               |
 | Next.js 12        | 9.x                |
 | Next.js 11        | 8.x                |
 | Next.js 9.5+ / 10 | 4.x, 5.x, 6.x, 7.x |
@@ -111,7 +113,7 @@ If you need to install all packages of a certain scope (**it is highly discourag
 
 ```js
 const packageJSON = require('./package.json');
-const transpiledPackages = Object.keys(packageJSON.dependencies).filter(it => it.includes('@shared/'));
+const transpiledPackages = Object.keys(packageJSON.dependencies).filter((it) => it.includes('@shared/'));
 
 const withTM = require('next-transpile-modules')(transpiledPackages);
 ```
