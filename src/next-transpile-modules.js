@@ -122,7 +122,7 @@ const withTmInitializer = (modules = [], options = {}) => {
      */
     const getPackageRootDirectory = (module) => {
       try {
-        packageLookupDirectory = resolve(CWD, path.join(module, 'package.json'));
+        const packageLookupDirectory = resolve(CWD, path.join(module, 'package.json'));
         return path.dirname(packageLookupDirectory);
       } catch (err) {
         throw new Error(
