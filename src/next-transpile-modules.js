@@ -126,7 +126,7 @@ const withTmInitializer = (modules = [], options = {}) => {
         return path.dirname(packageLookupDirectory);
       } catch (err) {
         throw new Error(
-          `next-transpile-modules - an unexpected error happened when trying to resolve "${module}". Are you sure the name of the module you are trying to transpile is correct, and it has a package.json with a "main" or an "exports" field?\n${err}`
+          `next-transpile-modules - an unexpected error happened when trying to resolve "${module}". Are you sure the name of the module you are trying to transpile is correct, and it has a package.json with a "main" or an "exports" field?\n${err}`,
         );
       }
     };
@@ -147,7 +147,7 @@ const withTmInitializer = (modules = [], options = {}) => {
         // Safecheck for Next < 5.0
         if (!options.defaultLoaders) {
           throw new Error(
-            'This plugin is not compatible with Next.js versions below 5.0.0 https://err.sh/next-plugins/upgrade'
+            'This plugin is not compatible with Next.js versions below 5.0.0 https://err.sh/next-plugins/upgrade',
           );
         }
         if (resolveSymlinks !== undefined) {
@@ -200,11 +200,11 @@ const withTmInitializer = (modules = [], options = {}) => {
         // .module.css
         if (nextCssLoaders) {
           const nextCssLoader = nextCssLoaders.oneOf.find(
-            (rule) => rule.sideEffects === false && regexEqual(rule.test, /\.module\.css$/)
+            (rule) => rule.sideEffects === false && regexEqual(rule.test, /\.module\.css$/),
           );
 
           const nextSassLoader = nextCssLoaders.oneOf.find(
-            (rule) => rule.sideEffects === false && regexEqual(rule.test, /\.module\.(scss|sass)$/)
+            (rule) => rule.sideEffects === false && regexEqual(rule.test, /\.module\.(scss|sass)$/),
           );
 
           // backwards compatibility with Next.js 13.0 (broke in 13.0.1)
@@ -227,7 +227,7 @@ const withTmInitializer = (modules = [], options = {}) => {
         // Add support for Global CSS imports in transpiled modules
         if (nextCssLoaders) {
           const nextGlobalCssLoader = nextCssLoaders.oneOf.find(
-            (rule) => rule.sideEffects === true && regexEqual(rule.test, /(?<!\.module)\.css$/)
+            (rule) => rule.sideEffects === true && regexEqual(rule.test, /(?<!\.module)\.css$/),
           );
 
           if (nextGlobalCssLoader) {
@@ -243,7 +243,7 @@ const withTmInitializer = (modules = [], options = {}) => {
           }
 
           const nextGlobalSassLoader = nextCssLoaders.oneOf.find(
-            (rule) => rule.sideEffects === true && regexEqual(rule.test, /(?<!\.module)\.(scss|sass)$/)
+            (rule) => rule.sideEffects === true && regexEqual(rule.test, /(?<!\.module)\.(scss|sass)$/),
           );
 
           // FIXME: SASS works only when using a custom _app.js file.
@@ -261,7 +261,9 @@ const withTmInitializer = (modules = [], options = {}) => {
         // Make hot reloading work!
         // FIXME: not working on Wepback 5
         // https://github.com/vercel/next.js/issues/13039
-        const watchOptionsIgnored = Array.isArray(config.watchOptions.ignored) ? config.watchOptions.ignored : [config.watchOptions.ignored];
+        const watchOptionsIgnored = Array.isArray(config.watchOptions.ignored)
+          ? config.watchOptions.ignored
+          : [config.watchOptions.ignored];
         config.watchOptions.ignored = [
           ...watchOptionsIgnored.filter((pattern) => pattern !== '**/node_modules/**'),
           `**node_modules/{${modules.map((mod) => `!(${mod})`).join(',')}}/**/*`,

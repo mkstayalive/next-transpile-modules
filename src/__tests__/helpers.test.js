@@ -63,7 +63,7 @@ describe('createWebpackMatcher', () => {
 
       expect(matcher('/Users/Test/app/node_modules/test/node_modules/nested/some-file.js')).toBe(false);
       expect(matcher('/Users/Test/app/node_modules/@scoped/scoped-module/node_modules/nested/some-file.js')).toBe(
-        false
+        false,
       );
     });
 

@@ -1,6 +1,6 @@
 > **Note**
-> All `next-transpile-modules` features have natively landed to Next.js 13.1, you can check [the migration guide here](https://github.com/martpie/next-transpile-modules/releases/tag/the-end). 
-> 
+> All `next-transpile-modules` features have natively landed to Next.js 13.1, you can check [the migration guide here](https://github.com/martpie/next-transpile-modules/releases/tag/the-end).
+>
 > This package is now officially deprecated, and the repository will be archived soon, thank you everyone!
 
 ---

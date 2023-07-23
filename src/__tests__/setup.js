@@ -21,7 +21,7 @@ fse.copySync('./src/next-transpile-modules.js', 'src/__tests__/__apps__/npm-basi
 fse.copySync('./src/next-transpile-modules.js', 'src/__tests__/__apps__/yarn-workspaces/app/next-transpile-modules.js');
 fse.copySync(
   './src/next-transpile-modules.js',
-  'src/__tests__/__apps__/yarn-workspaces-symlinks/app/next-transpile-modules.js'
+  'src/__tests__/__apps__/yarn-workspaces-symlinks/app/next-transpile-modules.js',
 );
 fse.copySync('./src/next-transpile-modules.js', 'src/__tests__/__apps__/pnpm/next-transpile-modules.js');
 fse.copySync('./src/next-transpile-modules.js', 'src/__tests__/__apps__/swc/app/next-transpile-modules.js');
